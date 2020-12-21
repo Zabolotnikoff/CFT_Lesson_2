@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity android:name=".presentation.ui.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NoteListActivity">
+        <activity android:name="com.example.cft_lesson_2.presentation.ui.note.list.NoteListActivity">
 
         </activity>
 
-        <activity android:name=".DetailNoteActivity">
+        <activity android:name="com.example.cft_lesson_2.presentation.ui.note.NoteDetailActivity">
 
         </activity>
     </application>
