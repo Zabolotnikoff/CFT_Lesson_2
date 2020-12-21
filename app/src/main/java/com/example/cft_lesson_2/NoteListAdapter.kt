@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cft_lesson_2.model.entity.Note
+import java.util.*
 
-class NoteListAdapter: RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
+class NoteListAdapter(private val clickListener: (Note) -> Unit) : RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
 
     private val noteList: MutableList<Note> = mutableListOf()
-    private var noteListener: NoteListener? = null
+//    private val noteList: MutableList<Note> = LinkedList()
 
     fun setNoteList(newNotes: List<Note>) {
         noteList.clear()
@@ -18,13 +20,10 @@ class NoteListAdapter: RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setNoteListener(listener: NoteListener) {
-        noteListener = listener
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
-        return ViewHolder(view, noteListener)
+        return ViewHolder(view, clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -35,19 +34,16 @@ class NoteListAdapter: RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
         holder.bind(noteList[position])
     }
 
-    class ViewHolder(itemView: View, private val noteListener: NoteListener?): RecyclerView.ViewHolder (itemView) {
+    class ViewHolder(itemView: View, private val noteListener: (Note) -> Unit ) :
+        RecyclerView.ViewHolder(itemView) {
 
         val title: TextView = itemView.findViewById(R.id.itemTitle)
 
-        fun bind (item: Note) {
-            title.text = item.title
+        fun bind(model: Note) {
+            title.text = model.title
             itemView.setOnClickListener {
-                noteListener?.onNoteClick(item)
+                noteListener(model)
             }
         }
-    }
-
-    interface NoteListener {
-        fun onNoteClick(note: Note)
     }
 }
