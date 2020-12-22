@@ -1,16 +1,11 @@
-package com.example.cft_lesson_2
+package com.example.cft_lesson_2.presentation.viewmodel.note.list
 
-import android.content.Intent
-import android.os.Bundle
-//import android.os.PersistableBundle
-//import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.cft_lesson_2.model.entity.Note
-//import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.note_list_activity.*
+import com.example.cft_lesson_2.presentation.viewmodel.SingleLiveEvent
 
-class NoteListActivity : AppCompatActivity() {
+class NoteListViewModel : ViewModel() {
 
     private val noteList = listOf(
         Note("Научиться создавать приложения под Android", "Ох уж эта наука..."),
@@ -26,22 +21,14 @@ class NoteListActivity : AppCompatActivity() {
         Note("Накормить кота хомяком", "Мяу... Дайте лучше рыбки")
     )
 
-    val adapter = NoteListAdapter{note ->
-        val intent = Intent(this@NoteListActivity, DetailNoteActivity::class.java)
-        intent.putExtra("Note", note)
-        startActivity(intent)
+    val notes = MutableLiveData<List<Note>>()
+    val noteClickedEvent = SingleLiveEvent<Note>()
+
+    init {
+        notes.value = noteList
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.note_list_activity)
-
-        val layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-
-        reciclerView.adapter = adapter
-        reciclerView.layoutManager = layoutManager
-
-        adapter.setNoteList(noteList)
+    fun noteClicked(note: Note){
+        noteClickedEvent.value = note
     }
 }

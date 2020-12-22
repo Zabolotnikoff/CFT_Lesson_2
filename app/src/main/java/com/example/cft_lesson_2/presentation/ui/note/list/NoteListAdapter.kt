@@ -1,17 +1,19 @@
-package com.example.cft_lesson_2
+package com.example.cft_lesson_2.presentation.ui.note.list
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cft_lesson_2.R
 import com.example.cft_lesson_2.model.entity.Note
 import java.util.*
 
-class NoteListAdapter(private val clickListener: (Note) -> Unit) : RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
+class NoteListAdapter(private val clickListener: (Note) -> Unit) :
+    RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {
 
-//    private val noteList: MutableList<Note> = mutableListOf()
-    private val noteList: MutableList<Note> = LinkedList()
+    private val noteList: MutableList<Note> = mutableListOf()
+//    private val noteList: MutableList<Note> = LinkedList()
 
     fun setNoteList(newNotes: List<Note>) {
         noteList.clear()
@@ -19,7 +21,6 @@ class NoteListAdapter(private val clickListener: (Note) -> Unit) : RecyclerView.
 
         notifyDataSetChanged()
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
@@ -34,7 +35,7 @@ class NoteListAdapter(private val clickListener: (Note) -> Unit) : RecyclerView.
         holder.bind(noteList[position])
     }
 
-    class ViewHolder(itemView: View, private val noteListener: (Note) -> Unit ) :
+    class ViewHolder(itemView: View, private val noteListener: (Note) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
 
         val title: TextView = itemView.findViewById(R.id.itemTitle)
