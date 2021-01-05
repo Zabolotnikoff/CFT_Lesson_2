@@ -1,4 +1,4 @@
-package com.example.cft_lesson_2.presentation.ui.note.list
+package com.example.cft_lesson_2.feature.note.list.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cft_lesson_2.R
-import com.example.cft_lesson_2.model.entity.Note
-import java.util.*
+import com.example.cft_lesson_2.feature.note.domain.entity.Note
 
 class NoteListAdapter(private val clickListener: (Note) -> Unit) :
     RecyclerView.Adapter<NoteListAdapter.ViewHolder>() {

@@ -1,14 +1,14 @@
-package com.example.cft_lesson_2.presentation.ui
+package com.example.cft_lesson_2.feature.hello.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.cft_lesson_2.R
-import com.example.cft_lesson_2.presentation.ui.note.list.NoteListActivity
+import com.example.cft_lesson_2.feature.note.list.presentation.NoteListActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class HelloActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

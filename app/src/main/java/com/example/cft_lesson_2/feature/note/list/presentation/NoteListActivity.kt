@@ -1,26 +1,30 @@
-package com.example.cft_lesson_2.presentation.ui.note.list
+package com.example.cft_lesson_2.feature.note.list.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cft_lesson_2.R
-import com.example.cft_lesson_2.model.entity.Note
-import com.example.cft_lesson_2.presentation.ui.note.NoteDetailActivity
-import com.example.cft_lesson_2.presentation.viewmodel.note.list.NoteListViewModel
+import com.example.cft_lesson_2.feature.note.domain.entity.Note
+import com.example.cft_lesson_2.feature.note.detail.presentation.NoteDetailActivity
+import com.example.cft_lesson_2.feature.note.list.di.NoteListViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.note_list_activity.*
 
 class NoteListActivity : AppCompatActivity() {
 
-    //    private val viewModel: NoteListViewModel by viewModels()
-    private val viewModel: NoteListViewModel by lazy {
-        ViewModelProvider(this).get(NoteListViewModel::class.java)
+
+    private val viewModel: NoteListViewModel by viewModels() {
+        NoteListViewModelFactory()
     }
+
+    /*   private val viewModel: NoteListViewModel by lazy {
+           ViewModelProvider(this).get(NoteListViewModel::class.java)
+       }
+   */
     private val adapter = NoteListAdapter { note -> viewModel.noteClicked(note) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

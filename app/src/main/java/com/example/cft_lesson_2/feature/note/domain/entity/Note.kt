@@ -1,4 +1,4 @@
-package com.example.cft_lesson_2.model.entity
+package com.example.cft_lesson_2.feature.note.domain.entity
 
 import java.io.Serializable
 

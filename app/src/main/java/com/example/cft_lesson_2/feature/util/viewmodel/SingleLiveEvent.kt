@@ -1,4 +1,4 @@
-package com.example.cft_lesson_2.presentation.viewmodel
+package com.example.cft_lesson_2.feature.util.viewmodel
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
